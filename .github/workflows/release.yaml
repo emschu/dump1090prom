@@ -1,0 +1,102 @@
+name: Dump1090Prom - Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Build Artifacts
+        run: make release
+      - name: Build Changelog
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v4
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: ${{steps.github_release.outputs.changelog}}
+          draft: false
+          prerelease: false
+
+      - name: upload windows artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release
+          asset_name: dump1090prom-windows-amd64.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
+
+      - name: upload windows artifact arm64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release
+          asset_name: dump1090prom-windows-arm64.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
+
+      - name: upload linux artifacts amd64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release
+          asset_name: dump1090prom-linux-amd64
+          asset_content_type: application/octet-stream
+
+      - name: upload linux artifacts 386
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release
+          asset_name: dup1090prom-linux-386
+          asset_content_type: application/octet-stream
+
+      - name: upload linux artifacts arm
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release
+          asset_name: dump1090prom-linux-arm
+          asset_content_type: application/octet-stream
+
+      - name: upload linux artifacts arm64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release
+          asset_name: dump1090prom-linux-arm64
+          asset_content_type: application/octet-stream
+
+      - name: upload darwin artifacts arm64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release
+          asset_name: dump1090prom-darwin-arm64
+          asset_content_type: application/octet-stream

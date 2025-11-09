@@ -1,0 +1,70 @@
+# dump1090prom
+# Copyright (C) 2025 emschu[aet]mailbox.org
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public
+# License along with this program.
+# If not, see <https://www.gnu.org/licenses/>.
+
+image: golang:latest
+
+stages:
+  - test
+  - build
+  - secret-detection
+
+variables:
+  SECRET_DETECTION_ENABLED: 'true'
+
+secret_detection:
+  stage: secret-detection
+include:
+  - template: Security/Secret-Detection.gitlab-ci.yml
+
+test:
+  stage: test
+  tags:
+  - linux
+  script:
+    - go fmt $(go list ./... | grep -v /vendor/)
+    - go vet $(go list ./... | grep -v /vendor/)
+    - go test -race $(go list ./... | grep -v /vendor/)
+
+compile:
+  stage: build
+  tags:
+  - linux
+  script:
+    - go build -o app ./...
+  artifacts:
+    paths:
+      - app
+
+aircraft_update_job:
+  tags:
+    - linux
+  before_script:
+    - apt-get update -qy ; apt-get install -y python3-pip python3-pandas python3-lxml python3-markdown-it python3-requests
+  script:
+    - cd dev ; python3 fetch_airlines.py ; cd ..
+    - |
+      if ! git diff --quiet data/wikipedia-airlines.csv; then
+        git config user.email "gitlab-ci@localhost"
+        git config user.name "GitLab CI"
+        git add data/wikipedia-airlines.csv
+        git commit -m "Update data/wikipedia-airlines.csv"
+        git remote add ci "https://gitlab-ci-token:${GIT_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git"
+        git push ci HEAD:$CI_COMMIT_REF_NAME
+      else
+        echo "No changes in data/wikipedia-airlines.csv"
+      fi
+  when: manual

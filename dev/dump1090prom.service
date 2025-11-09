@@ -1,0 +1,28 @@
+[Unit]
+Description=Prometheus Exporter for dump1090/readsb data
+Documentation=https://github.com/emschu/dump1090prom
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+
+ExecStart=/usr/local/bin/dump1090prom --base-path /run/readsb --verbose --port 8081
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/run/readsb
+
+Restart=on-failure
+RestartSec=5
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=dump1090prom
+
+[Install]
+WantedBy=multi-user.target

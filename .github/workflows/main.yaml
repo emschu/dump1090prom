@@ -1,0 +1,41 @@
+name: Dump1090Prom-CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+
+jobs:
+  default-ci:
+    name: Default integration check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [ '1.22', '1.23', '1.24', '1.25' ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Caching...
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+          key: ${{ runner.os }}-node
+          restore-keys: |
+            ${{ runner.os }}-cache-dump1090prom
+
+      - name: Build Codebase
+        run: make setup
+
+      - name: Build Codebase
+        run: make build
+
+      - name: Unit Tests
+        run: make test
