@@ -2,7 +2,7 @@
 
 A Prometheus exporter for `readsb`/`dump1090` aircraft data.
 This exporter converts dump1090 data into [prometheus](https://prometheus.io/) metrics, allowing to monitor and visualizing collected aircraft data in detail.
-This repository contains a Grafana dashboard for visualizing the collected data.
+This repository contains a [Grafana dashboard](dashboards/dump1090prom-grafana-dashboard.json) for visualizing the collected data.
 
 Tested with:
 - [flightaware/dump1090](https://github.com/flightaware/dump1090)
@@ -24,11 +24,19 @@ Version: 1.0.0
 
 ### Prerequisites
 
-- Go 1.24 or higher
-- Prometheus server
 - *readsb* or *dump1090* with *rtlsdr* or compatible software generating `aircraft.json` and `receiver.json`
 
-### Building from source
+### Option 1: Download a release file
+
+Download the latest release from the [releases page](https://github.com/emschu/dump1090prom/releases).
+
+### Option 2: Install via go
+
+```bash
+go install github.com/emschu/dump1090prom@latest
+```
+
+### Option 3: Building from source
 
 ```bash
 git clone https://github.com/emschu/dump1090prom.git
@@ -64,27 +72,6 @@ Notes:
 - Distance calculation is performed only when a receiver position is known.
 - Provide either `-base-url` or `-base-path` (not both).
 
-## Prometheus Configuration
-
-Note: You have to replace `<host_ip>` (and port) with the IP address of your `dump1090prom` server.
-
-```yaml
-    scrape_configs:
-      - job_name: 'dump1090prom'
-        static_configs:
-          - targets: ['<host_ip>:8080']
-        metrics_path: /metrics
-        scrape_interval: 1s
-```
-
-## Grafana Dashboard
-
-The project includes a ready-to-use Grafana dashboard in the `dashboards` directory. To use it:
-
-Import the [`dashboards/dump1090-grafana-dashboard.json`](./dashboards/dump1090-grafana-dashboard.json) file into your Grafana instance.
-
-![Grafana Dashboard](./example/grafana_dashboard_1.png)
-
 ## Usage Examples
 ### Starting `dump1090prom`
 
@@ -107,6 +94,28 @@ Optionally override receiver position and enable verbose logs:
 ```bash
 ./dump1090prom -base-url http://your-dump1090-server:8080/data -lat 52.5200 -lon 13.4050 -verbose
 ```
+
+## Prometheus Configuration
+
+Note: You have to replace `<host_ip>` (and port) with the IP address of your `dump1090prom` server.
+
+```yaml
+    scrape_configs:
+      - job_name: 'dump1090prom'
+        static_configs:
+          - targets: ['<host_ip>:8080']
+        metrics_path: /metrics
+        scrape_interval: 1s
+```
+
+## Grafana Dashboard
+
+The project includes a ready-to-use Grafana dashboard in the `dashboards` directory. To use it:
+
+Import the [`dashboards/dump1090prom-grafana-dashboard.json`](dashboards/dump1090prom-grafana-dashboard.json) file into your Grafana instance.
+
+![Grafana Dashboard 1](./example/grafana_dashboard_1.png)
+![Grafana Dashboard 2](./example/grafana_dashboard_4.png)
 
 ## Metrics
 

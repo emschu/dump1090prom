@@ -10,7 +10,7 @@ on:
 
 jobs:
   default-ci:
-    name: Default integration check
+    name: Build and Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
