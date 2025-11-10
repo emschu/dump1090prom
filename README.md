@@ -8,7 +8,7 @@ Tested with:
 - [flightaware/dump1090](https://github.com/flightaware/dump1090)
 - [wiedehopf/readsb](https://github.com/wiedehopf/readsb)
 
-Version: 1.0.0
+Version: 1.0.2
 
 ## Features
 

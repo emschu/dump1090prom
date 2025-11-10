@@ -30,7 +30,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-var VERSION = "1.0.0"
+var VERSION = "1.0.2"
 
 //go:embed data/wikipedia-airlines.csv
 var wikipediaAirlinesCsvFileContent string
