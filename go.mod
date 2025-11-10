@@ -1,4 +1,4 @@
-module aircarftjson2prometheus
+module github.com/emschu/dump1090prom
 
 go 1.24
 
