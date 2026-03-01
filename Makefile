@@ -19,7 +19,7 @@ SHELL := /bin/bash
 
 GO := GO111MODULE=on go
 GO_PATH = $(shell $(GO) env GOPATH)
-APP_VERSION_DOT = "1.0.2"
+APP_VERSION_DOT = "1.0.3"
 
 .PHONY: all
 all: help

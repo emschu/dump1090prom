@@ -23,6 +23,7 @@ type dump1090MetricCollectorConfig struct {
 	IsDistanceCalculationEnabled   bool
 	IsAirlineLabellingEnabled      bool
 	IsExposingOriginalFilesEnabled bool
+	Host                           string
 	Port                           int
 	ReceiverPositionLat            *float64
 	ReceiverPositionLon            *float64
@@ -31,12 +32,12 @@ type dump1090MetricCollectorConfig struct {
 }
 
 func newDump1090MetricCollectorConfig(source MetricSource) *dump1090MetricCollectorConfig {
-	// TODO fully integrate
 	return &dump1090MetricCollectorConfig{
 		Source:                         source,
 		IsDistanceCalculationEnabled:   true,
 		IsAirlineLabellingEnabled:      true,
 		IsExposingOriginalFilesEnabled: true,
+		Host:                           "127.0.0.1",
 		Port:                           8080,
 		ReceiverPositionLat:            nil,
 		ReceiverPositionLon:            nil,

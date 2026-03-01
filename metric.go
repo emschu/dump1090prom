@@ -342,11 +342,21 @@ type dump1090Metric struct {
 }
 
 // used to keep the flight info cached once found, and limits entries
-var flightMap = NewRollingFlightMap(CONFIG.RollingMapDefaultSize)
-var flightAirLineMap = NewRollingAirLineMap(CONFIG.RollingMapDefaultSize)
-var flightAirLineLabelMap = NewRollingAirLineLabelMap(CONFIG.RollingMapDefaultSize)
+var flightMap *RollingFlightMap
+var flightAirLineMap *RollingAirlineMap
+var flightAirLineLabelMap *RollingAirlineLabelMap
+
+func initRollingMaps() {
+	if flightMap != nil {
+		return
+	}
+	flightMap = NewRollingFlightMap(CONFIG.RollingMapDefaultSize)
+	flightAirLineMap = NewRollingAirLineMap(CONFIG.RollingMapDefaultSize)
+	flightAirLineLabelMap = NewRollingAirLineLabelMap(CONFIG.RollingMapDefaultSize)
+}
 
 func newDump1090Metric(source MetricSource) *dump1090Metric {
+	initRollingMaps()
 	var metric = &dump1090Metric{
 		aircraftJsonFilePath: source.getPath(),
 	}
