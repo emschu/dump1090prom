@@ -30,7 +30,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-var VERSION = "1.0.2"
+var VERSION = "1.0.3"
 
 //go:embed data/wikipedia-airlines.csv
 var wikipediaAirlinesCsvFileContent string
@@ -42,8 +42,13 @@ func main() {
 	file := flag.String("base-path", "", "Path to the directory where aircraft.json and receiver.json are located")
 	lat := flag.Float64("lat", 0.0, "Custom latitude of the receiver")
 	lon := flag.Float64("lon", 0.0, "Custom longitude of the receiver")
+	host := flag.String("host", "0.0.0.0", "Host to listen on (default: 0.0.0.0)")
 	port := flag.Int("port", 8080, "Port to listen on (default: 8080)")
 	verbose := flag.Bool("verbose", false, "Enable verbose output")
+	distanceCalc := flag.Bool("distance-calc", true, "Enable distance calculation to aircraft")
+	airlineLabel := flag.Bool("airline-label", true, "Enable airline labelling")
+	exposeFiles := flag.Bool("expose-files", true, "Expose original aircraft.json and receiver.json files")
+	rollingMapSize := flag.Int("rolling-map-size", 1000, "Default size of the rolling map for caching")
 	flag.Parse()
 	log.Printf("Dump1090Prom - A bridge between the dump1090 JSON data and prometheus – Version %s", VERSION)
 	source := findMetricSource(url, file)
@@ -54,6 +59,19 @@ func main() {
 		log.Printf("Verbose: %t", *verbose)
 		CONFIG.IsVerbose = *verbose
 	}
+	if distanceCalc != nil {
+		CONFIG.IsDistanceCalculationEnabled = *distanceCalc
+	}
+	if airlineLabel != nil {
+		CONFIG.IsAirlineLabellingEnabled = *airlineLabel
+	}
+	if exposeFiles != nil {
+		CONFIG.IsExposingOriginalFilesEnabled = *exposeFiles
+	}
+	if rollingMapSize != nil {
+		CONFIG.RollingMapDefaultSize = *rollingMapSize
+	}
+	initRollingMaps()
 	receiverData, err := source.fetchReceiverMetrics()
 	if err != nil {
 		log.Printf("Cannot open receiver.json: %v", err)
@@ -80,6 +98,9 @@ func main() {
 	}
 	if port != nil {
 		CONFIG.Port = *port
+	}
+	if host != nil {
+		CONFIG.Host = *host
 	}
 
 	// Read airline data
@@ -114,7 +135,7 @@ func main() {
 		}
 	}
 
-	log.Printf("Starting server on port %d\n", CONFIG.Port)
+	log.Printf("Starting server on %s:%d\n", CONFIG.Host, CONFIG.Port)
 
 	if CONFIG.IsExposingOriginalFilesEnabled {
 		http.HandleFunc("/aircraft.json", func(w http.ResponseWriter, r *http.Request) {
@@ -131,9 +152,9 @@ func main() {
 	}
 
 	http.Handle("/metrics", promhttp.Handler())
-	err = http.ListenAndServe(fmt.Sprintf(":%d", CONFIG.Port), nil)
+	err = http.ListenAndServe(fmt.Sprintf("%s:%d", CONFIG.Host, CONFIG.Port), nil)
 	if err != nil {
-		log.Fatalf("failed to start server on port %d: %v", CONFIG.Port, err)
+		log.Fatalf("failed to start server on %s:%d: %v", CONFIG.Host, CONFIG.Port, err)
 	}
 }
 

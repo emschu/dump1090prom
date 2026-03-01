@@ -9,7 +9,7 @@ Type=simple
 User=pi
 Group=pi
 
-ExecStart=/usr/local/bin/dump1090prom --base-path /run/readsb --verbose --port 8081
+ExecStart=/usr/local/bin/dump1090prom --base-path /run/readsb --verbose --host 127.0.0.1 --port 8080
 
 NoNewPrivileges=yes
 PrivateTmp=yes
