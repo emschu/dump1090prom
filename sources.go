@@ -77,17 +77,20 @@ func readReceiverJsonFromFile(inFile string) (*Dump1090ReceiverJson, error) {
 }
 
 func readFile[T payloads](inFile string) (*T, error) {
-	// TODO make secure
-	file, err := os.ReadFile(inFile)
+	f, err := os.Open(inFile)
 	if err != nil {
 		return nil, err
 	}
-	var msg *T
-	jsonErr := json.Unmarshal(file, &msg)
-	if jsonErr != nil {
-		log.Fatalf("Error parsing receiver.json: %v", jsonErr)
+	defer f.Close()
+
+	// Use a LimitReader to prevent reading extremely large files (e.g., 10MB limit)
+	lr := io.LimitReader(f, 10*1024*1024)
+
+	var payload T
+	if err := json.NewDecoder(lr).Decode(&payload); err != nil {
+		return nil, fmt.Errorf("error parsing JSON from file '%s': %w", inFile, err)
 	}
-	return msg, nil
+	return &payload, nil
 }
 
 type URLMetricSource struct {

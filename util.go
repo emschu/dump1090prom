@@ -25,6 +25,7 @@ import (
 type RollingFlightMap = GenericRollingStringKeyValueStore[string]
 type RollingAirlineMap = GenericRollingStringKeyValueStore[airline]
 type RollingAirlineLabelMap = GenericRollingStringKeyValueStore[string]
+type RollingIcaoCountryMap = GenericRollingStringKeyValueStore[[]countryData]
 
 type GenericRollingStringKeyValueStore[T any] struct {
 	capacity int
@@ -33,10 +34,10 @@ type GenericRollingStringKeyValueStore[T any] struct {
 	store    sync.Map // string -> T
 }
 
-func NewRollingFlightMap(n int) *RollingFlightMap {
+func NewRollingFlightMap(i int) *RollingFlightMap {
 	return &RollingFlightMap{
-		capacity: n,
-		keys:     make([]string, 0, n),
+		capacity: i,
+		keys:     make([]string, 0, i),
 	}
 }
 
@@ -49,6 +50,13 @@ func NewRollingAirLineLabelMap(i int) *RollingAirlineLabelMap {
 
 func NewRollingAirLineMap(i int) *RollingAirlineMap {
 	return &RollingAirlineMap{
+		capacity: i,
+		keys:     make([]string, 0, i),
+	}
+}
+
+func NewRollingAirLineCountryMap(i int) *RollingIcaoCountryMap {
+	return &RollingIcaoCountryMap{
 		capacity: i,
 		keys:     make([]string, 0, i),
 	}

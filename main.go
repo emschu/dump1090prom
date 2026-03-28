@@ -30,10 +30,13 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-var VERSION = "1.0.3"
+var VERSION = "1.0.4"
 
 //go:embed data/wikipedia-airlines.csv
 var wikipediaAirlinesCsvFileContent string
+
+//go:embed data/countries.csv
+var countriesCsvFileContent string
 
 var CONFIG dump1090MetricCollectorConfig
 
@@ -42,13 +45,15 @@ func main() {
 	file := flag.String("base-path", "", "Path to the directory where aircraft.json and receiver.json are located")
 	lat := flag.Float64("lat", 0.0, "Custom latitude of the receiver")
 	lon := flag.Float64("lon", 0.0, "Custom longitude of the receiver")
-	host := flag.String("host", "0.0.0.0", "Host to listen on (default: 0.0.0.0)")
+	host := flag.String("host", "127.0.0.1", "Host to listen on (default: 127.0.0.1)")
 	port := flag.Int("port", 8080, "Port to listen on (default: 8080)")
 	verbose := flag.Bool("verbose", false, "Enable verbose output")
 	distanceCalc := flag.Bool("distance-calc", true, "Enable distance calculation to aircraft")
 	airlineLabel := flag.Bool("airline-label", true, "Enable airline labelling")
 	exposeFiles := flag.Bool("expose-files", true, "Expose original aircraft.json and receiver.json files")
 	rollingMapSize := flag.Int("rolling-map-size", 1000, "Default size of the rolling map for caching")
+	collector := flag.String("collector", "dump1090prom", "Constant 'collector' label value of this instance")
+	globalLabels := flag.String("labels", "", "Global labels to add to all metrics (e.g., 'location=home,env=prod')")
 	flag.Parse()
 	log.Printf("Dump1090Prom - A bridge between the dump1090 JSON data and prometheus – Version %s", VERSION)
 	source := findMetricSource(url, file)
@@ -70,6 +75,19 @@ func main() {
 	}
 	if rollingMapSize != nil {
 		CONFIG.RollingMapDefaultSize = *rollingMapSize
+	}
+	if collector != nil {
+		CONFIG.Collector = *collector
+	}
+	CONFIG.GlobalLabels["collector"] = CONFIG.Collector
+	if globalLabels != nil && *globalLabels != "" {
+		labels := strings.Split(*globalLabels, ",")
+		for _, label := range labels {
+			parts := strings.SplitN(label, "=", 2)
+			if len(parts) == 2 {
+				CONFIG.GlobalLabels[strings.TrimSpace(parts[0])] = strings.TrimSpace(parts[1])
+			}
+		}
 	}
 	initRollingMaps()
 	receiverData, err := source.fetchReceiverMetrics()
@@ -104,11 +122,11 @@ func main() {
 	}
 
 	// Read airline data
-	data, err := readAirlinesData(wikipediaAirlinesCsvFileContent)
+	airlineData, err := readAirlinesData(wikipediaAirlinesCsvFileContent)
 	if err != nil {
 		log.Fatalf("Cannot open airline data: %v", err)
 	}
-	airlines = data
+	airlines = airlineData
 	for _, airline := range airlines {
 		icao := strings.TrimSpace(airline.ICAO)
 		if icao == "" {
@@ -116,6 +134,10 @@ func main() {
 			continue
 		}
 		icaoToFilter = append(icaoToFilter, icao)
+	}
+	icaoCountries, err = readCountryData(countriesCsvFileContent)
+	if err != nil {
+		log.Fatalf("Cannot open country data: %v", err)
 	}
 
 	metric := newDump1090Metric(CONFIG.Source)
@@ -130,7 +152,19 @@ func main() {
 	} else {
 		if CONFIG.IsVerbose {
 			for _, mf := range metricFamilies {
-				log.Printf("Metric: %s, Type: %s, Description: %s\n", *mf.Name, mf.Type.String(), *mf.Help)
+				var metric *dump1090MetricItem
+				for _, v := range metrics {
+					metricName := fmt.Sprintf("%s_%s", v.Namespace, v.Name)
+					if metricName == *mf.Name {
+						metric = &v
+						break
+					}
+				}
+				if metric == nil {
+					continue
+				}
+				log.Printf("Metric: %s – Type: %s – Labels: %s – Description: %s\n",
+					*mf.Name, mf.Type.String(), strings.Join(metric.Labels, ", "), *mf.Help)
 			}
 		}
 	}
@@ -158,17 +192,18 @@ func main() {
 	}
 }
 
-func writeFileAsJson(w http.ResponseWriter, err error, fetchMetrics interface{}) {
+func writeFileAsJson(w http.ResponseWriter, err error, fetchMetrics any) {
 	w.Header().Set("Content-Type", "application/json")
 	if err != nil {
 		log.Printf("Error fetching metrics: %v", err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
-	marshal, err := json.Marshal(fetchMetrics)
+	marshal, err := json.MarshalIndent(fetchMetrics, "", "  ")
 	if err != nil {
 		log.Printf("Error marshalling metrics: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
+		return
 	}
 	_, err = w.Write(marshal)
 	if err != nil {

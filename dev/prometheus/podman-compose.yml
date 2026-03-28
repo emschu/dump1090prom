@@ -17,10 +17,7 @@ services:
       - '--web.console.templates=/etc/prometheus/consoles'
       - '--web.enable-lifecycle'
     restart: unless-stopped
-    extra_hosts:
-      - "host.containers.internal:host-gateway"
-    networks:
-      - monitoring
+    network_mode: "slirp4netns:allow_host_loopback=true"
 
   grafana:
     image: docker.io/grafana/grafana:latest
@@ -36,14 +33,7 @@ services:
     restart: unless-stopped
     depends_on:
       - prometheus
-    networks:
-      - monitoring
-    extra_hosts:
-      - "host.containers.internal:host-gateway"
-
-networks:
-  monitoring:
-    driver: bridge
+    network_mode: "slirp4netns:allow_host_loopback=true"
 
 volumes:
   prometheus_data:

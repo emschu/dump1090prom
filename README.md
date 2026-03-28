@@ -1,14 +1,14 @@
 # Dump1090Prom – Aircraft data exporter for Prometheus
 
 A Prometheus exporter for `readsb`/`dump1090` aircraft data.
-This exporter converts dump1090 data into [prometheus](https://prometheus.io/) metrics, allowing to monitor and visualizing collected aircraft data in detail.
+This exporter converts dump1090 data into [prometheus](https://prometheus.io/) metrics, allowing to monitor and visualize collected aircraft data in detail.
 This repository contains a [Grafana dashboard](dashboards/dump1090prom-grafana-dashboard.json) for visualizing the collected data.
 
 Tested with:
 - [flightaware/dump1090](https://github.com/flightaware/dump1090)
 - [wiedehopf/readsb](https://github.com/wiedehopf/readsb)
 
-Version: 1.0.3
+Version: 1.0.4
 
 ## Features
 
@@ -46,7 +46,7 @@ go build
 
 ### Running permanently (Linux)
 
-If you use Linux, you can use [this systemd unit file](./dev/dump1090prom.service) and copy it
+If you use Linux with systemd, you can use [this systemd unit file](./dev/dump1090prom.service) and copy it
 to `/etc/systemd/system/dump1090prom.service`. You may want to adjust the `port` and add custom parameters in `ExecStart`.
 Look for the Configuration and CLI section below for more information.
 
@@ -69,28 +69,32 @@ env GOOS=linux GOARCH=arm go build -o dump1090prom
 
 The exporter is configured via command-line flags:
 
-- `-base-url` string
+- `-base-url` `string`
   Base URL to the directory where aircraft.json and receiver.json are available
-- `-base-path` string
+- `-base-path` `string`
   Local filesystem directory containing aircraft.json and receiver.json, e.g. /var/www/html/data
-- `-lat` float
+- `-lat` `float`
   Override receiver latitude (used for distance calculation)
-- `-lon` float
+- `-lon` `float`
   Override receiver longitude (used for distance calculation)
-- `-host` host (default: `127.0.0.1`)
+- `-host` `host` (default: `127.0.0.1`)
   Override host where /metrics is exposed
-- `-port` port (default: `8080`)
+- `-port` `port` (default: `8080`)
   Override port where /metrics is exposed
-- `-verbose` bool (default: `false`)
+- `-verbose` `bool` (default: `false`)
   Enable verbose logging
-- `-distance-calc` bool (default: `true`)
+- `-distance-calc` `bool` (default: `true`)
   Enable distance calculation to aircraft
-- `-airline-label` bool (default: `true`)
+- `-airline-label` `bool` (default: `true`)
   Enable airline labelling
-- `-expose-files` bool (default: `true`)
+- `-expose-files` `bool` (default: `true`)
   Expose original aircraft.json and receiver.json files at /aircraft.json and /receiver.json
-- `-rolling-map-size` int (default: `1000`)
+- `-rolling-map-size` `int` (default: `1000`)
   Default size of the rolling map for caching
+- `-collector` `string` (default: `dump1090prom`)
+  Constant 'collector' label value of this instance
+- `-labels` `string`
+  Global labels to add to all metrics (e.g., 'location=home,environment=testing')
 
 Notes:
 - When `-lat` and `-lon` are not provided, the exporter will try to read receiver position from `receiver.json`.
@@ -124,6 +128,11 @@ Show verbose logs:
 Expose metrics on a different port:
 ```bash
 ./dump1090prom -base-url http://your-dump1090-server:8080/data -port 9091
+```
+
+Add global labels to all metrics:
+```bash
+./dump1090prom -base-url http://your-dump1090-server:8080/data -labels "environment=home"
 ```
 
 Typically `dump1090prom` uses `<lat>` and `<lon>` as defined in your `receiver.json`,
@@ -239,3 +248,5 @@ The `dev` directory contains resources for setting up a development environment:
 ```
 
 This project is licensed under the terms of the license included in the [`LICENSE`](./LICENSE) file.
+
+Wikipedia airline data is licensed under [CCBYSA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

@@ -18,9 +18,16 @@
 package main
 
 import (
+	"io"
+	"net/http"
+	"net/http/httptest"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
+
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func TestFindMetricSource_FileBasePath(t *testing.T) {
@@ -71,5 +78,56 @@ func TestIsDir(t *testing.T) {
 	// Non-existing path
 	if isDir(filepath.Join(tmp, "doesnotexist")) {
 		t.Fatalf("expected non-existing path to return false")
+	}
+}
+
+func TestGlobalLabels(t *testing.T) {
+	// Setup config with global labels
+	empty := ""
+	path := "example"
+	source := findMetricSource(&empty, &path)
+	CONFIG = *newDump1090MetricCollectorConfig(source)
+	CONFIG.GlobalLabels = map[string]string{
+		"location": "home",
+		"env":      "test",
+	}
+
+	// Create and register the collector
+	// Note: since prometheus.DefaultRegisterer is global, we should use a local registry for testing
+	registry := prometheus.NewRegistry()
+	metric := newDump1090Metric(source)
+	registry.MustRegister(metric)
+
+	// Create a test HTTP server
+	handler := promhttp.HandlerFor(registry, promhttp.HandlerOpts{})
+	ts := httptest.NewServer(handler)
+	defer ts.Close()
+
+	// Make a request to the test server
+	resp, err := http.Get(ts.URL)
+	if err != nil {
+		t.Fatalf("failed to get metrics: %v", err)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		t.Fatalf("failed to read body: %v", err)
+	}
+
+	output := string(body)
+
+	// Check if global labels are present in at least one metric
+	// e.g. dump1090prom_aircraft_count{env="test",location="home"}
+	if !strings.Contains(output, `location="home"`) {
+		t.Errorf("expected global label location=\"home\" not found in output")
+	}
+	if !strings.Contains(output, `env="test"`) {
+		t.Errorf("expected global label env=\"test\" not found in output")
+	}
+
+	// Verify it's on a specific metric too
+	if !strings.Contains(output, `dump1090prom_aircraft_count{env="test",location="home"}`) {
+		t.Errorf("metric dump1090prom_aircraft_count does not have expected global labels")
 	}
 }

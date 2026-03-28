@@ -27,25 +27,26 @@ func TestGetAirlineLabel_MatchAndNoMatch(t *testing.T) {
 	// Ensure rolling maps are initialized with sane size
 	flightAirLineMap = NewRollingAirLineMap(10)
 	flightAirLineLabelMap = NewRollingAirLineLabelMap(10)
+	flightIcaoCountryMap = NewRollingAirLineCountryMap(10)
 
 	// Matching prefix
-	if lbl := getAirlineLabel("TST1234"); lbl == nil {
+	if lbl := getAirlineLabel("TST1234", ""); lbl == nil {
 		t.Fatalf("expected label for matching ICAO prefix")
 	} else if got := *lbl; got == "" {
 		t.Fatalf("expected non-empty label")
 	}
 
 	// No match
-	if lbl := getAirlineLabel("ABC1234"); lbl != nil {
+	if lbl := getAirlineLabel("ABC1234", ""); lbl != nil {
 		t.Fatalf("expected nil for non-matching prefix, got %v", *lbl)
 	}
 
 	// Empty flight code
-	if lbl := getAirlineLabel(""); lbl != nil {
+	if lbl := getAirlineLabel("", ""); lbl != nil {
 		t.Fatalf("expected nil for empty flight code")
 	}
 
-	label := getAirlineLabel("DMIRO")
+	label := getAirlineLabel("ABCDE", "")
 	if label != nil {
 		t.Fatalf("Expected no airline match on 5-letter code, got %v", *label)
 	}
