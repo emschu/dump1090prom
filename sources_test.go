@@ -165,3 +165,13 @@ func TestReadJsonFromFile_NotFound(t *testing.T) {
 		t.Fatalf("expected error for missing receiver.json")
 	}
 }
+
+func TestReadFile_InvalidJSON_ShouldReturnError(t *testing.T) {
+	tmp := t.TempDir()
+	file := filepath.Join(tmp, "invalid.json")
+	_ = os.WriteFile(file, []byte("{"), 0o644)
+	_, err := readFile[Dump1090AircraftJson](file)
+	if err == nil {
+		t.Fatal("expected error, got nil")
+	}
+}

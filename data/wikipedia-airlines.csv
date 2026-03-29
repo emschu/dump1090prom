@@ -805,7 +805,7 @@ EN;DLA;Air Dolomiti;DOLOMITI;Italy;
 6R;DRU;Alrosa Air Company;MIRNY;Russia;
 ;DSK;Aero Algarve;SKYBANNER;Portugal;ICAO code no longer allocated
 ;DST;Aex Air;DESERT;United States;
-;EAT;Air Transport;TRANS EUROPE;Slovakia;
+;EAT;Air – Transport Europe;TRANS EUROPE;Slovakia;
 ;EBC;Aero Ejecutivo De Baja California;CALIXJET;Mexico;
 4F;ECE;Air City;AIRCITY;Germany;
 ;ECG;Aero Ejecutivos RCG;EJECTUIVOS RCG;Mexico;
@@ -1020,7 +1020,7 @@ LK;LXR;Air Luxor;AIRLUXOR;Portugal;ICAO code no longer allocated
 MK;MAU;Air Mauritius;AIRMAURITIUS;Mauritius;
 ;MBA;Avag Air;AVAG AIR;Austria;
 ;MBB;Air Manas;AIR MANAS;Kyrgyzstan;
-;MBC;Airjet Exploracao Aerea de Carga;MABECO;Angola;
+;MBC;Airjet Exploração Aérea de Carga;MABECO;Angola;
 ;MCB;Air Mercia;WESTMID;United Kingdom;
 ;MCD;Air Medical;AIR MED;United Kingdom;
 ;MCO;Aerolíneas Marcos;MARCOS;Mexico;
@@ -1796,7 +1796,7 @@ XO;CXH;China Xinhua Airlines;XINHUA;China;
 X7;CHF;Chitaavia;CHITA;Russia;
 OQ;CQN;Chongqing Airlines;CHONG QING;China;
 ;CAS;Christman Air System;CHRISTMAN;United States;
-;OEC;Christophorus Flugrettungsverein;CHRISTOPHORUS;Austria;
+;OEC;Christophorus Flugrettungsverein [de];CHRISTOPHORUS;Austria;
 ;CHO;Chrome Air Services;CHROME AIR;United States;
 ;CHU;Church Aircraft;CHURCHAIR;United States;
 A2;CIU;Cielos Airlines;CIELOS;Peru;
@@ -2235,11 +2235,12 @@ UZ;BRQ;El-Buraq Air Transport;BURAQAIR;Libya;
 ;EFT;Embassy Freight Company;EMBASSY FREIGHT;United States;
 ;EMB;Empresa Brasileira De Aeronáutica;EMBRAER;Brazil;
 ;XSL;Embry-Riddle Aeronautical University;SATSLAB;United States;Sesatlab Proof-of-Concept Flight
+;ERU;Embry-Riddle Aeronautical University;RIDDLE;United States;
 EA;EAI;Emerald Airlines;GEMSTONE;Ireland;
 ;JEM;Emerald Airways;GEMSTONE;United Kingdom;
 ;EWW;Emery Worldwide Airlines;EMERY;United States;
 ;EMT;Emetebe;EMETEBE;Ecuador;
-EK;UAE;Emirates Airlines;EMIRATES;United Arab Emirates;
+EK;UAE;Emirates;EMIRATES;United Arab Emirates;
 ;SBC;Emoyeni Air Charter;SABIAN AIR;South Africa;Mount Air
 ;EMP;Empire Air Service;EMPIRE;United States;
 EM;CFS;Empire Airlines;EMPIRE AIR;United States;
@@ -2258,13 +2259,14 @@ EU;EEA;Empresa Ecuatoriana De Aviación;ECUATORIANA;Ecuador;
 G8;ENK;Enkor JSC;ENKOR;Russia;
 ;EGV;Enrique Gleisner Vivanco;GLEISNER;Chile;
 ;ESE;Ensenada Vuelos Especiales;ENSENADA ESPECIAL;Mexico;
-OF;ENT;Enter Air;ENTER;Poland;
+E4;ENT;Enter Air;ENTER;Poland;
 ;ENS;Entergy Services;ENTERGY SHUTTLE;United States;
 ;EWS;Enterprise World Airways;WORLD ENTERPRISE;Democratic Republic of the Congo;
 E0;ESS;Eos Airlines;NEW DAWN;United States;
 ;EKA;Equaflight Service;EQUAFLIGHT;Republic of the Congo;
 ;EQZ;Equatair Air Services (Zambia);ZAMBIA CARGO;Zambia;
 ;EQT;Equatorial Airlines;;Equatorial Guinea;
+EJ;EQR;Equatorial Congo Airlines;ECAIR;Republic of the Congo;2024
 ;ERH;Era Helicopters;ERAH;United States;
 ;IRY;Eram Air;ERAM AIR;Iran;
 ;ERF;Erfoto;ERFOTO;Portugal;
@@ -2930,6 +2932,7 @@ MR;MML;Hunnu Air;TRANS MONGOLIA;Mongolia;
 ;SRD;HM Coastguard;COASTGUARD;United Kingdom;
 ;SRG;HM Coastguard;RESCUE;United Kingdom;Search and Rescue
 ;WHR;Hummingbird Helicopter Service;WHIRLEYBIRD;United States;
+E2;HFA;Air Haifa;AIR HAIFA;Israel;
 I4;EXP;Island Air Express;ISLAND EXPRESS;United States;2014[28]
 ;IWL;Island Wings;;Bahamas;2014[28]
 IK;KAR;Ikar;IKAR;Russian Federation;
@@ -3237,6 +3240,7 @@ HO;DKH;Juneyao Airlines;AIR JUNEYAO;China;2023[32]
 ;JSY;Jung Sky;;Croatia;
 ;MEY;Justair Scandinavia;MELODY;Sweden;
 ;DOJ;Justice Prisoner and Alien Transportation System;JUSTICE;United States;
+OH;JIA;PSA Airlines;BLUE STREAK;United States;
 ;KTA;K2 Airways;;Pakistan;
 ;KSA;K S Avia;SKY CAMEL;Latvia;
 ;KCR;Kolob Canyons Air Services;KOLOB;United States;
@@ -3494,7 +3498,7 @@ GJ;CDC;Loong Air;LOONG AIR;China;
 ;LSC;Los Cedros Aviación;CEDROS;Chile;
 ;TAS;Lotus Air;LOTUS FLOWER;Egypt;
 ;LTW;Luchtvaartmaatschappij Twente;TWENTAIR;Netherlands;
-;LKE;Lucky Air;LUCKY AIR;China;
+8L[35];LKE;Lucky Air;LUCKY AIR;China;
 ;LUT;Luft Carago;LUGO;South Africa;
 ;LVD;Luftfahrt-Vermietungs-Dienst;AIR SANTE;Austria;
 LH;DLH;Lufthansa;LUFTHANSA;Germany;
@@ -3526,12 +3530,12 @@ Z8;AZN;Línea Aérea Amaszonas;;Bolivia;
 LT;SNG;LongJiang Airlines;SNOW EAGLE;China;
 ;LYB;Lynden Air Cargo;HIGHLANDS;Papua New Guinea;
 Q2;DQA;Maldivian;ISLAND AVIATION;Maldives;
-;MMH;McMahon Helicopter;NIGHT RIDER;United States;2015[35]
-;HOG;Mahogany Air Charters;HOGAN AIR;Zambia;2014[36]
-;MTS;Med Jets;MED SERVICE;Mexico;2014[36]
-;MSF;Minsheng International Jet;MEINSHENG;China;2014[36]
-;MXS;Millon Express;MILLON EXPRESS;United States;Trading name for Sunrise Airlines allocated in 2014[37]
-;MHF;Maritime Helicopters;AIR MARITIME;United States;Allocated 2014[38]
+;MMH;McMahon Helicopter;NIGHT RIDER;United States;2015[36]
+;HOG;Mahogany Air Charters;HOGAN AIR;Zambia;2014[37]
+;MTS;Med Jets;MED SERVICE;Mexico;2014[37]
+;MSF;Minsheng International Jet;MEINSHENG;China;2014[37]
+;MXS;Millon Express;MILLON EXPRESS;United States;Trading name for Sunrise Airlines allocated in 2014[38]
+;MHF;Maritime Helicopters;AIR MARITIME;United States;Allocated 2014[39]
 BF;MRK;MarkAir;MARKAIR;United States;1984-1995
 WD;MWM;Modern Transporte Aereo De Carga;MODERNAIR;Brazil;
 ;MSJ;Magnum Air;MAGNUM AIR;Philippines;
@@ -3777,7 +3781,7 @@ UB;UBA;Myanma Airways;UNIONAIR;Myanmar;
 ;MYA;Myflug;MYFLUG;Iceland;
 ;AAD;Mann Air Ltd;Ambassador;United Kingdom;t/a Ambassador
 M2;MHV;MHS Aviation GmbH;SNOWCAP;Germany;
-;MTU;Middle Tennessee State University;BLUE RAIDER;United States;2019[39]
+;MTU;Middle Tennessee State University;BLUE RAIDER;United States;2019[40]
 NP;NIA;Nile Air;NILE BIRD;Egypt;
 ;SIQ;National Center for Atmospheric Research;SCIENCE QUEST;United States;
 ;NEJ;Netjets Business Aviation;NET BUSINESS;China;
@@ -3880,7 +3884,7 @@ HG;NLY;Niki;FLYNIKI;Austria;
 ;NSA;Nile Safaris Aviation;NILE SAFARIS;Sudan;
 ;NLW;Nile Wings Aviation Services;NILE WINGS;Sudan;
 ;NBS;Nimbus Aviation;NIMBUS;United Kingdom;
-;NSR;Nine Star Airways;AIR STAR;Thailand;2014[40]
+;NSR;Nine Star Airways;AIR STAR;Thailand;2014[41]
 KZ;NCA;Nippon Cargo Airlines;NIPPON CARGO;Japan;
 ;NVK;Nizhnevartovskavia;VARTOSKAVIA;Russia;
 ;NOH;No. 32 (The Royal) Squadron;NORTHOLT;United Kingdom;
@@ -3936,7 +3940,7 @@ HW;NWL;North-Wright Airways;NORTHWRIGHT;Canada;
 ;NCE;Northcoast Executive Airlines;TOP HAT;United States;
 NE;NEE;Northeast Airlines;NORTHEAST;United States;
 ;NPX;Northeast Aviation;NORTHEAST EXPRESS;United States;
-;NEW;Northeastern Aviation;MEADOW FLIGHT;United States;2014[40]
+;NEW;Northeastern Aviation;MEADOW FLIGHT;United States;2014[41]
 NC*;NAC;Northern Air Cargo;YUKON;United States;
 ;BYC;Northern Airlines Sanya;BEIYA;China;
 ;NDA;Northern Airways;NORTHERN DAKOTA;United States;
@@ -3959,10 +3963,10 @@ J3;PLR;Northwestern Air;POLARIS;Canada;
 ;NAM;Nortland Air Manitoba;MANITOBA;Canada;
 D8*;IBK;Norwegian Air International;NORTRANS;Ireland;subsidiary of Norwegian Air Shuttle (Ceased operations 2021)
 DY;NOZ;Norwegian Air Shuttle;NORDIC;Norway;
-DI;NRS;Norwegian Air UK;REDNOSE*;United Kingdom;subsidiary of Norwegian Air Shuttle (Ceased operations 2021)[41]
+DI;NRS;Norwegian Air UK;REDNOSE*;United Kingdom;subsidiary of Norwegian Air Shuttle (Ceased operations 2021)[42]
 DN;NAA;Norwegian Air Argentina;NORUEGA;Argentina;subsidiary of Norwegian Air Shuttle (Ceased operations 2019)
 DU;NLH;Norwegian Long Haul;NORSTAR;Norway;subsidiary of Norwegian Air Shuttle (Ceased operations 2021)[42]
-DH;NAN;Norwegian Air Norway;NORSHIP;Norway;subsidiary of Norwegian Air Shuttle (transferred sole aircraft back to Norwegian Air Shuttle AOC in 2023)[43]
+DH;NAN;Norwegian Air Norway;NORSHIP;Norway;subsidiary of Norwegian Air Shuttle (transferred sole aircraft back to Norwegian Air Shuttle AOC in 2023)[citation needed]
 D8;NSZ;Norwegian Air Sweden;REDNOSE;Sweden;subsidiary of Norwegian Air Shuttle
 ;TFN;Norwegian Aviation College;SPIRIT;Norway;
 ;XNT;Notams International;;United States;
@@ -3982,7 +3986,7 @@ N6;ACQ;Nuevo Continente;AERO CONTINENTE;Peru;"Operating license revoked by Chile
 ;NIN;Nurman Avia Indopura;NURVINDO;Indonesia;
 ;NYS;Nyasa Express;NYASA;Malawi;
 1I;NJE;NetJets Europe;FRACTION;Portugal;
-;ORN;Orange Air;ORANGE JET;United States;Allocated in 2014[44]
+;ORN;Orange Air;ORANGE JET;United States;Allocated in 2014[43]
 IP;ONS;One Airlines;AIR DREAMS;Chile;
 ;FET;Old Dominion Freight Lines;FREIGHT LINE;United States;
 ;DRL;Omni Air Transport;DRILLER;United States;
@@ -4066,10 +4070,10 @@ OB;AAN;Oasis International Airlines Now assigned to Boliviana de Aviacion (BoA);
 ;ORT;Ortac;SKYWALKER;Jersey;
 PB;PVL;PAL Airlines;PAL Airlines;Canada;
 ;PIP;Pilot Flight Academy;PILOT;Norway;
-;HRS;Pursuit Aviation;HORSEMAN;United States;2016[45]
-;NCT;Pete Air;PETE AIR;Thailand;2014[46]
-;PRT;Prime Service Italia;PRIME ITALIA;Italy;2014[46]
-;PXT;Pacific Coast Jet;PACK COAST;United States;Allocated in 2014[47]
+;HRS;Pursuit Aviation;HORSEMAN;United States;2016[44]
+;NCT;Pete Air;PETE AIR;Thailand;2014[45]
+;PRT;Prime Service Italia;PRIME ITALIA;Italy;2014[45]
+;PXT;Pacific Coast Jet;PACK COAST;United States;Allocated in 2014[46]
 ;BPH;Phoenix Helicopter Academy;BLACK PHOENIX;United Kingdom;
 ;PFY;Pel-Air Aviation;PELFLIGHT;Australia;
 ;PXR;Pixair Survey;PIXAIR;France;
@@ -4118,7 +4122,7 @@ PK;PIA;Pakistan International Airlines;PAKISTAN;Pakistan;
 ;PKR;Pakker Avio;PAKKER AVIO;Estonia;
 ;LPA;Pal Aerolíneas;LINEASPAL;Mexico;
 ;PPC;Palau Asia Pacific Airlines;PALAU ASIAPAC;Palau;
-;PNA;Palau National Airlines;SEBUS;Palau;2014[46]
+;PNA;Palau National Airlines;SEBUS;Palau;2014[45]
 GP;PTP;Palau Trans Pacific Airlines;TRANS PACIFIC;Palau;
 PF;PNW;Palestinian Airlines;PALESTINIAN;Egypt;
 ;JSP;Palmer Aviation;PALMER;United Kingdom;
@@ -4133,7 +4137,7 @@ NR;PIR;Pamir Airways;PAMIR;Afghanistan;
 ;PMA;Pan Malaysian Air Transport;PAN MALAYSIA;Malaysia;
 ;PNC;Pan-Air;PANAIRSA;Mexico;
 ;PGI;Panagra Airways;PANAGRA;United States;
-;RSL;Panama Aircraft Rental and Sales;PANAMA RENTAL;Panama;2014[46]
+;RSL;Panama Aircraft Rental and Sales;PANAMA RENTAL;Panama;2014[45]
 ;PEI;Panamedia;PANAMEDIA;Spain;
 ;PVI;Panavia;;Panama;
 ;PNH;Panh;KUBAN LIK;Russia;
@@ -4149,6 +4153,7 @@ P8;PTN;Pantanal Linhas Aéreas;PANTANAL;Brazil;
 ;PGF;Paragon Global Flight Support;;United Kingdom;
 ;PRR;Paramount Airlines;PARAMOUNT;Sierra Leone;
 I7;PMW;Paramount Airways;PARAWAY;India;
+WE;PTA;Parata Air;PARATA AIR;Republic of Korea;
 ;APE;Parcel Express;AIR PARCEL;United States;
 ;IRE;Pariz Air;PARIZAIR;Iran;
 ;PRA;Pars Aviation Service;PARSAVIA;Iran;
@@ -4336,8 +4341,8 @@ PB;SPR;Provincial Airlines;SPEEDAIR;Canada;
 ;PYR;Pyramid Air Lines;PYAIR;Egypt;
 ;PRI;Primera Air Scandinavia;PRIMERA;Denmark;
 ;PRW;Primera Air Nordic;JETBIRD;Latvia;
-;FQA;Quikjet Airlines;QUIK LIFT;India;2014[48]
-;QQE;Qatar Executive;;Qatar;
+;FQA;Quikjet Airlines;QUIK LIFT;India;2014[47]
+;QQE;Qatar Executive;QREX;Qatar;
 ;QNT;Qanot Sharq;QANAT SHARQ;Uzbekistan;
 QF;QFA;Qantas;QANTAS;Australia;
 QF;QLK;QantasLink;QLINK;Australia;
@@ -4397,7 +4402,7 @@ R6;;RACSA;;Guatemala;
 ;CSM;Ratkhan Air;LORRY;Kazakhstan;
 ;RVR;Raven Air;RAVEN;United Kingdom;
 ;RVN;Raven Air;RAVEN U-S;United States;Qualiflight Training
-7H;RVF;Ravn Alaska;RAVEN FLIGHT;United States;2014[49]
+7H;RVF;Ravn Alaska;RAVEN FLIGHT;United States;2014[48]
 ;REI;Ray Aviation;RAY AVIATION;Israel;
 ;RYT;Raya Jet;;Jordan;
 ;RTN;Raytheon Aircraft Company;RAYTHEON;United States;
@@ -4419,7 +4424,7 @@ REB;Rebus;REBUS;Bulgaria;;
 ;RDV;Red Sea Aviation;RED AVIATION;Egypt;
 ;RSV;Red Sky Ventures;RED SKY;Namibia;
 ;STR;Red Star;STARLINE;United Arab Emirates;
-8L;RHC;Redhill Aviation;REDAIR;United Kingdom;
+;RHC;Redhill Aviation;REDAIR;United Kingdom;
 ;VRD;Virgin America;REDWOOD;United States;
 ;RAV;Reed Aviation;REED AVIATION;United Kingdom;
 ;REF;Reef Air;REEF AIR;New Zealand;
@@ -4448,14 +4453,14 @@ RH;RPH;Republic Express Airlines;PUBLIC EXPRESS;Indonesia;
 ;RBC;Republicair;REPUBLICAIR;Mexico;
 ;RST;Resort Air;RESORT AIR;United States;
 ;RUT;Reut Airways;YADID;Israel;
-;RGV;RG Aviation;;Venezuela;2014[49]
+;RGV;RG Aviation;;Venezuela;2014[48]
 ;RDS;Rhoades Aviation;RHOADES EXPRESS;United States;
 ;RIU;Riau Airlines;RIAU AIR;Indonesia;
 ;RIA;Rich International Airways;RICHAIR;United States;
 ;RVC;Richards Aviation;RIVER CITY;United States;
 ;RIC;Richardson's Airway;RICHARDSON;United States;
 ;RCA;Richland Aviation;RICHLAND;United States;
-;WHH;Richy Skylark;;Sri Lanka;2014[49]
+;WHH;Richy Skylark;;Sri Lanka;2014[48]
 ;HPR;Rick Lucas Helicopters;HELIPRO;New Zealand;
 C7;RLE;Rico Linhas Aéreas;RICO;Brazil;
 ;RID;Ridder Avia;AKRID;Kazakhstan;
@@ -4487,7 +4492,7 @@ V2;RBY;Vision Airlines;RUBY;United States;Charter Airline and Las Vegas Tours
 ;RMV;Romavia;AEROMAVIA;Romania;
 ;RNS;Ronso;RONSO;Mexico;
 ;ROR;Roraima Airways;RORAIMA;Guyana;
-;KRS;Rosen Aviation;;Japan;2014[49]
+;KRS;Rosen Aviation;;Japan;2014[48]
 ;RNB;Rosneft-Baltika;ROSBALT;Russia;
 ;NRG;Ross Aviation;ENERGY;United States;
 ;RFS;Rossair;;Australia;
@@ -4523,7 +4528,7 @@ BI;RBA;Royal Brunei Airlines;BRUNEI;Brunei;
 ;ROJ;Royal Jet;ROYALJET;United Arab Emirates;
 RJ;RJA;Royal Jordanian;JORDANIAN;Jordan;
 ;RJZ;Royal Jordanian Air Force;JORDAN AIR FORCE;Jordan;
-RK;RCT;Skyview Airways;GREENSKY;THAILAND;2014[49]
+RK;RCT;Skyview Airways;GREENSKY;THAILAND;2014[48]
 RK;RKH;Royal Khmer Airlines;KHMER AIR;Cambodia;
 ;RMF;Royal Malaysian Air Force;ANGKASA;Malaysia;
 ;NVY;Royal Navy;NAVY;United Kingdom;
@@ -4535,7 +4540,7 @@ RK;RKH;Royal Khmer Airlines;KHMER AIR;Cambodia;
 RL;PPW;Royal Phnom Penh Airways;PHNOM-PENH AIR;Cambodia;
 ;RRA;Royal Rwanda Airlines;ROYAL RWANDA;Rwanda;
 ;RSF;Royal Saudi Air Force;ARSAF;Saudi Arabia;
-RR;RYS;Buzz (Ryanair);MAGIC SUN;Poland;
+RR;RYS;Buzz (Polish airline);MAGIC SUN;Poland;
 ;RSN;Royal Swazi National Airways;SWAZI NATIONAL;Swaziland;
 WR;HRH;Royal Tongan Airlines;TONGA ROYAL;Tonga;
 ;RWE;Royal West Airlines;ROYAL WEST;United States;
@@ -4564,17 +4569,18 @@ RK;RUK;Ryanair UK;BLUEMAX;United Kingdom;
 ;RAA;Rynes Aviation;RYNES AVIATION;United States;
 ;REV;RVL Group;ENDURANCE;United Kingdom;
 RT;BUG;UVT Aero;;Russia;
-;OMN;Servicios Aereos Ominia;SERVIOMNIA;Mexico;2014[50]
-;SEN;Servicios de Aviacion Sierra;SERVISIERRA;Mexico;2014[50]
-;SGC;SGC Aviation;SAINT GEORGE;Austria;2014[50]
-;SCJ;Siamjet Aviation;SIAMJET;Thailand;2014[50]
-;SIX;Sixt Rent A Car;DRIVE ORANGE;United States;2014[50]
-;SOG;Solenta Aviation Ghana;;Ghana;2014[50]
-;QSR;SR Jet;SPARKLE ROLL;China;2014[50]
-;KBN;Spiracha Aviation;KABIN;Thailand;2014[50]
-;CBN;"Southern Illinois University as ""Aviation Flight""";CARBONDALE;United States;Allocated in 2014[51]
-;IBG;Springfield Air;ICE BRIDGE;United States;Allocated 2014[52]
-;BZQ;Seneca Polytechnic;STING;Canada;Operates as part of the Bachelor of Aviation program. Allocated 2014[53]
+WJ;JES;Jetsmart Argentina;SMARTBIRD;Argentina;
+;OMN;Servicios Aereos Ominia;SERVIOMNIA;Mexico;2014[49]
+;SEN;Servicios de Aviacion Sierra;SERVISIERRA;Mexico;2014[49]
+;SGC;SGC Aviation;SAINT GEORGE;Austria;2014[49]
+;SCJ;Siamjet Aviation;SIAMJET;Thailand;2014[49]
+;SIX;Sixt Rent A Car;DRIVE ORANGE;United States;2014[49]
+;SOG;Solenta Aviation Ghana;;Ghana;2014[49]
+;QSR;SR Jet;SPARKLE ROLL;China;2014[49]
+;KBN;Spiracha Aviation;KABIN;Thailand;2014[49]
+;CBN;"Southern Illinois University as ""Aviation Flight""";CARBONDALE;United States;Allocated in 2014[50]
+;IBG;Springfield Air;ICE BRIDGE;United States;Allocated 2014[51]
+;BZQ;Seneca Polytechnic;STING;Canada;Operates as part of the Bachelor of Aviation program. Allocated 2014[52]
 ;BVV;Spark+;SPARC;Russia;
 ;SJM;Sino Jet Management;SINO SKY;China;
 ;SCH;Seychelles Airlines;OCEAN BIRD;Seychelles;
@@ -4627,7 +4633,7 @@ SK;SAS;Scandinavian Airlines;SCANDINAVIAN;Sweden, Denmark and Norway;
 ;SAV;Samal Air;;Kazakhstan;
 ;SAW;Cham Wing Airlines;SHAMWING;Syrian Arab Republic;
 SA;SAX;Sabah Air;SABAH AIR;Malaysia;
-;SAZ;Swiss Air-Ambulance;SWISS AMBULANCE;Switzerland;
+;SAZ;Swiss Air-Ambulance;SWISS AMBULANCE;Switzerland;A subsidiary of Swiss Air-Rescue Rega
 ;SBA;SOL Linhas Aéreas;SOL;Brazil;
 ;SBB;Steinman Aviation;SABER EXPRESS;United States;
 UG;TUX;Tunisair Express;TUNEXPRESS;Tunisia;
@@ -4656,7 +4662,7 @@ W3;SCL;Switfair Cargo;SWIFTAIR;Canada;
 ;SCB;Saigon Capital Aircraft Management;SAIGON;Netherlands;
 ;SCN;South American Airlines;SOUTH AMERICAN;Peru;
 ;AHI;Servicios Aéreos de Chihuahua Aerochisa;AEROCHISA;Mexico;
-FP;AND;Servicios Aéreos de los Andes;SERVI ANDES;Peru;2014[50]
+FP;AND;Servicios Aéreos de los Andes;SERVI ANDES;Peru;2014[49]
 ;SCP;Scorpio Aviation;SCORPIO;Egypt;
 ;SCQ;OSM Aviation Academy;SCAVAC;Norway, Sweden and San Diego;
 ;SIC;SFS Aviation;SICHART;Thailand;
@@ -4961,7 +4967,7 @@ TE;IGA;Skytaxi;IGUANA;Poland;
 ;LLA;Servico Leo Lopex;LEO LOPOZ;Mexico;
 ;LLS;Servicios Aéreos Estrella;SERVIESTRELLA;Mexico;
 ;LMG;South African Air Force;SOUTH AFRICAN;South Africa;
-;LMO;Sky One Holdings as Privaira;SKY HOLDINGS;United States;"Callsign and company name changed from Sky Limo Corporation ""SKY LIMO"" in 2015.[55]"
+;LMO;Sky One Holdings as Privaira;SKY HOLDINGS;United States;"Callsign and company name changed from Sky Limo Corporation ""SKY LIMO"" in 2015.[54]"
 RZ*;LRS;Sansa;;Costa Rica;
 ;LSP;Spectrum Aviation Incorporated;AIR TONY;United Kingdom;
 ;MCG;SOS Helikoptern Gotland;MEDICOPTER;Sweden;
@@ -5093,7 +5099,7 @@ ZS;SOP;Solinair;SOLINAIR;Slovenia;
 ;SOT;Southeast Correct Craft;SOUTH COURIER;United States;
 9X;SOU;Southern Airways;SOUTHERN EXPRESS;United States;
 6W;SOV;Saratov Airlines Joint Stock Company;SARATOV AIR;Russia;
-;SOW;White Sparrow GmbH;SPARROW;Austria;[58]
+;SOW;White Sparrow GmbH;SPARROW;Austria;[57]
 ;SOX;Solid Air;SOLIDAIR;Netherlands;
 HZ;SOZ;Sat Airlines;SATCO;Kazakhstan;
 ;SPA;Sierra Pacific Airlines;SIERRA PACIFIC;United States;
@@ -5109,7 +5115,7 @@ HZ;SOZ;Sat Airlines;SATCO;Kazakhstan;
 ;SPP;Sapphire Aviation;SAPPHIRE;United States;
 ;SPQ;Servicios Aéreos Palenque;SERVICOS PALENQUE;Mexico;
 ;TBS;Servicios Aéreos Tribasa;TRIBASA;Mexico;
-;SVV;SALTAVIATION;SALT;Poland;[59]
+;SVV;SALTAVIATION;SALT;Poland;[58]
 ;TGT;SAAB Nyge Aero;TARGET;Sweden;
 ;THB;Spark Air;THAI SABAI;Thailand;
 ;TIH;S C Ion Tiriac;TIRIAC AIR;Romania;
@@ -5260,7 +5266,7 @@ TXZ;;Thai Express Air;EXPRESS AIR;Thailand;
 ;TFT;Thai Flying Service;THAI FLYING;Thailand;
 ;THG;Thai Global Airline;THAI GLOBAL;Thailand;
 ;THJ;Thai Jet Intergroup;THAI JET;Thailand;
-SL;TLM;Thai Lion Mentari;MENTARI;Thailand;
+SL;TLM;Thai Lion Mentari;MENTARI;Thailand;Associate of Lion Air
 ;TPV;Thai Pacific Airlines Business;THAI PACIFIC;Thailand;
 9I;LLR;Thai Sky Airlines;THAI SKY AIR;Thailand;
 WE;THD;Thai Smile Airways;THAI SMILE;Thailand;
@@ -5508,9 +5514,9 @@ VO;TYR;Tyrolean Airways;TYROLEAN;Austria;Renamed from Austrian Arrows
 ;TJS;Tyrolean Jet Services;TYROLJET;Austria;
 ;TUM;Tyumenspecavia;TUMTEL;Russia;
 VNX;TKK;flyADVANCED;TARKA;United States;Aero Ways Inc. flyADVANCED
-;UEU;United European Airlines;UNITED EUROPEAN;Romania;2014[60]
-;UCG;Uniworld Air Cargo;UNIWORLD;Panama;2014[60]
-;CUH;Urumqi Airlines;LOULAN;China;2014[60]
+;UEU;United European Airlines;UNITED EUROPEAN;Romania;2014[59]
+;UCG;Uniworld Air Cargo;UNIWORLD;Panama;2014[59]
+;CUH;Urumqi Airlines;LOULAN;China;2014[59]
 ;DOD;USAF Air Mobility Operations Control Center;;United States;
 ;DOI;U.S. Department of the Interior;INTERIOR;United States;Office of Aircraft Services
 ;CNV;U.S. Navy Reserve Logistic Air Forces;CONVOY;United States;U.S. Navy Reserve Logistic Air Forces, New Orleans, LA, USA
@@ -5585,7 +5591,7 @@ UH;USH;US Helicopter;US-HELI;United States;
 ;USJ;US Jet;USJET;United States;
 ;USX;US Express;AIR EXPRESS;United States;
 QU;UTN;Skyline Express;Skyline Express Airline;Ukraine;
-;TUM;UTAir;UTAIR-CARGO;Russian Federation;2014[60]
+;TUM;UTAir;UTAIR-CARGO;Russian Federation;2014[59]
 UT;UTA;UTair Aviation;UTAIR;Russia;WAS P2 till 2006
 ;UTR;Utair South Africa;AIRUT;South Africa;
 ;UTS;Ukrainian State Air Traffic Service Enterprise;AIRRUH;Ukraine;
@@ -5676,7 +5682,7 @@ VK;VGN;Virgin Nigeria Airways;VIRGIN NIGERIA;Nigeria;
 VS;VIR;Virgin Atlantic;VIRGIN;United Kingdom;
 ;VJM;Viajes Ejecutivos Mexicanos;VIAJES MEXICANOS;Mexico;
 ;VJT;Vistajet;VISTA;Canada;
-;VJT;Vistajet;VISTA MALTA;Malta;2014[61]
+;VJT;VistaJet;VISTA MALTA;Malta;2014[60]
 VE;VLE;C.A.I. Second;VOLA;Italy;
 VY;VLG;Vueling Airlines;VUELING;Spain;
 XF;VLK;Vladivostok Air;VLADAIR;Russia;Merged with Aurora
@@ -5753,7 +5759,7 @@ ST*;STT;Western Aircraft, Inc;SAWTOOTH;United States;
 ;WAL;Western Arctic Air;WESTERN ARCTIC;Canada;
 ;WTV;Western Aviators;WESTAVIA;United States;
 ;WES;Western Express Air Lines;WEST EX;Canada;
-;WGN;Western Global Airlines;WESTERN GLOBAL;United States;Allocated in 2014[62]
+;WGN;Western Global Airlines;WESTERN GLOBAL;United States;Allocated in 2014[61]
 W7;KMR;Western Pacific Airlines;KOMSTAR;United States;
 ;WPA;Western Pacific Airservice;WESTPAC;Solomon Islands;
 ;WSL;Westflight Aviation;WEST LINE;United Kingdom;
@@ -5805,6 +5811,7 @@ WW;WOW;WOW air;WOW air;Iceland;
 ;WYG;Wyoming Airlines;WYOMING;United States;
 KW;WAN;Wataniya Airways;WATANIYA;Kuwait;
 WR;WEN;WestJet Encore;ENCORE;Canada;
+WJ;JES;JetSmart Argentina;SMARTBIRD;Argentina;
 ;XJE;X-Jet;;Austria;
 ;XAB;Xabre Aerolineas;AERO XABRE;Mexico;
 ;XAE;Xair;AURA;Czech Republic;
@@ -5842,7 +5849,7 @@ YT;NYT;Yeti Airlines;YETI AIRLINES;Nepal;Domestic
 ;AYE;Yunnan Yingan Airlines;AIR YING AN;China;
 ;UGN;Yuzhnaya Aircompany;PLUTON;Kazakhstan;
 2N;UMK;Yuzhmashavia;YUZMASH;Ukraine;
-;BZE;Zenith Aviation;ZENSTAR;United Kingdom;2014[63]
+;BZE;Zenith Aviation;ZENSTAR;United Kingdom;2014[62]
 ;AZB;Zaab Air;ZAAB AIR;Ghana;
 ;AZJ;Zas Air;;Egypt;
 ;AZR;Zenith Air;ZENAIR;South Africa;

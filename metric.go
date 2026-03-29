@@ -141,7 +141,7 @@ var metrics = []dump1090MetricItem{
 		Name:      METRIC_AIRCRAFT_FLIGHT_INFO,
 		Namespace: Dump1090Namespace,
 		Help:      "Metadata about the flight and aircraft",
-		Labels:    []string{"hex", "flight", "lat", "lon", "category", "squawk", "direction", "distance", "airline"},
+		Labels:    []string{"hex", "flight", "lat", "lon", "category", "squawk", "direction", "distance", "airline", "country"},
 		Type:      METRIC_ITEM_TYPE_GAUGE_VEC,
 	}, {
 		Name:      METRIC_AIRCRAFT_TRUE_AIR_SPEED_KNOTS,
@@ -345,6 +345,7 @@ type dump1090Metric struct {
 var flightMap *RollingFlightMap
 var flightAirLineMap *RollingAirlineMap
 var flightAirLineLabelMap *RollingAirlineLabelMap
+var flightIcaoCountryMap *RollingIcaoCountryMap
 
 func initRollingMaps() {
 	if flightMap != nil {
@@ -353,6 +354,7 @@ func initRollingMaps() {
 	flightMap = NewRollingFlightMap(CONFIG.RollingMapDefaultSize)
 	flightAirLineMap = NewRollingAirLineMap(CONFIG.RollingMapDefaultSize)
 	flightAirLineLabelMap = NewRollingAirLineLabelMap(CONFIG.RollingMapDefaultSize)
+	flightIcaoCountryMap = NewRollingAirLineCountryMap(CONFIG.RollingMapDefaultSize)
 }
 
 func newDump1090Metric(source MetricSource) *dump1090Metric {
@@ -390,6 +392,7 @@ func (d *dump1090Metric) Collect(ch chan<- prometheus.Metric) {
 	for _, ac := range data.Aircraft {
 		hex := strings.TrimSpace(ac.Hex)
 		flight := strings.TrimSpace(ac.Flight)
+		country := strings.TrimSpace(getIcaoCountryLabel(hex))
 
 		var distance float64
 		if ac.Lat != nil && ac.Lon != nil {
@@ -423,7 +426,7 @@ func (d *dump1090Metric) Collect(ch chan<- prometheus.Metric) {
 		}
 		var airline string
 		if CONFIG.IsAirlineLabellingEnabled {
-			possibleAirline := getAirlineLabel(flight)
+			possibleAirline := getAirlineLabel(flight, hex)
 			if possibleAirline != nil {
 				airline = strings.TrimSpace(*possibleAirline)
 			}
@@ -492,7 +495,7 @@ func (d *dump1090Metric) Collect(ch chan<- prometheus.Metric) {
 			d.mustFindMetric(METRIC_AIRCRAFT_SEEN_POS_SECOND).GaugeVec.WithLabelValues(hex, flight).Set(*ac.SeenPos)
 		}
 
-		d.mustFindMetric(METRIC_AIRCRAFT_FLIGHT_INFO).GaugeVec.WithLabelValues(hex, flight, aircraftLat, aircraftLon, ac.Category, ac.Squawk, direction, fmt.Sprintf("%.6f", distance), airline).Set(1)
+		d.mustFindMetric(METRIC_AIRCRAFT_FLIGHT_INFO).GaugeVec.WithLabelValues(hex, flight, aircraftLat, aircraftLon, ac.Category, ac.Squawk, direction, fmt.Sprintf("%.6f", distance), airline, country).Set(1)
 
 		d.mustFindMetric(METRIC_AIRCRAFT_ADSB_VERSION).GaugeVec.WithLabelValues(hex, flight).Set(float64(ac.Version))
 
@@ -588,21 +591,24 @@ func (d *dump1090Metric) LoadAll() {
 		switch i.Type {
 		case METRIC_ITEM_TYPE_GAUGE:
 			gauge = prometheus.NewGauge(prometheus.GaugeOpts{
-				Namespace: i.Namespace,
-				Name:      i.Name,
-				Help:      i.Help,
+				Namespace:   i.Namespace,
+				Name:        i.Name,
+				Help:        i.Help,
+				ConstLabels: CONFIG.GlobalLabels,
 			})
 		case METRIC_ITEM_TYPE_GAUGE_VEC:
 			vec = prometheus.NewGaugeVec(prometheus.GaugeOpts{
-				Namespace: i.Namespace,
-				Name:      i.Name,
-				Help:      i.Help,
+				Namespace:   i.Namespace,
+				Name:        i.Name,
+				Help:        i.Help,
+				ConstLabels: CONFIG.GlobalLabels,
 			}, i.Labels)
 		case METRIC_ITEM_TYPE_COUNTER:
 			counter = prometheus.NewCounter(prometheus.CounterOpts{
-				Namespace: i.Namespace,
-				Name:      i.Name,
-				Help:      i.Help,
+				Namespace:   i.Namespace,
+				Name:        i.Name,
+				Help:        i.Help,
+				ConstLabels: CONFIG.GlobalLabels,
 			})
 		default:
 			log.Fatalf("Unknown metric type: %d", i.Type)

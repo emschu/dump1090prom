@@ -29,6 +29,8 @@ type dump1090MetricCollectorConfig struct {
 	ReceiverPositionLon            *float64
 	IsVerbose                      bool
 	RollingMapDefaultSize          int
+	Collector                      string
+	GlobalLabels                   map[string]string
 }
 
 func newDump1090MetricCollectorConfig(source MetricSource) *dump1090MetricCollectorConfig {
@@ -43,5 +45,7 @@ func newDump1090MetricCollectorConfig(source MetricSource) *dump1090MetricCollec
 		ReceiverPositionLon:            nil,
 		IsVerbose:                      false,
 		RollingMapDefaultSize:          1000,
+		Collector:                      "dump1090prom",
+		GlobalLabels:                   make(map[string]string),
 	}
 }
